@@ -34,6 +34,9 @@ def urlretrieve(remote_url, local_url, reporthook=None):
 def create_process_func(filename):
 
     start_time = time()
+    if sys.platform.startswith('win'):
+        encoding = sys.stdout.encoding
+        filename = filename.encode(encoding, 'replace').decode(encoding);
 
     def process_func(block_count, block_size, total_size):
         downloaded_size = block_count * block_size
