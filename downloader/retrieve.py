@@ -32,6 +32,8 @@ def urlretrieve(remote_url, local_url, reporthook=None):
 
 
 def create_process_func(filename):
+    if len(filename) > 23:
+        filename = filename[0:23] + '...'
 
     start_time = time()
     if sys.platform.startswith('win'):
